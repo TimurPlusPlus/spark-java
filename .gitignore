@@ -139,6 +139,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-src/main/resource/*
+src/main/resources/*
 
 # End of https://www.gitignore.io/api/java,macos,maven,intellij
