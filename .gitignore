@@ -8,7 +8,7 @@
 *.rar
 
 target/
-src/main/resources/*
+src/main/resources/data.parquet
 spark-warehouse
 .idea/
 *.iml
