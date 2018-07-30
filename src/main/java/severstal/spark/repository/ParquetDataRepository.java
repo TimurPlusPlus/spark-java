@@ -7,7 +7,6 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SaveMode;
-import org.apache.spark.sql.types.StructType;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class ParquetDataRepository implements DataRepository {
 
     private JavaSparkContext sc;
     private SQLContext sqlContext;
-    private StructType schema;
     private static final String PARQUET_PATH = "src/main/resources/data.parquet";
 
     public ParquetDataRepository() {

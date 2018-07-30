@@ -20,9 +20,12 @@ public class ParquetDataGenerator implements DataGenerator {
     public void generateData() {
         List<Data> data = new ArrayList<>();
         Random rand = new Random();
-        for (int i = 0; i < 10000001; i++) {
+        long startTime = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
             data.add(new Data(rand.nextInt(1001), rand.nextInt(300), new Date(rand.nextLong())));
         }
+        long endTime = System.nanoTime();
+        System.out.println("Generate time " + (endTime - startTime) / 1000000 / 1000);
         repository.write(data);
     }
 }

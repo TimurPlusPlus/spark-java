@@ -17,7 +17,10 @@ public class PivotService implements IPivotService {
     @Override
     public void pivot() {
         Dataset<Row> df = repository.read();
+        long startTime = System.nanoTime();
         df.select("id", "value").groupBy(col("value")).pivot("id").agg(count(col("id"))).show(20);
+        long endTime = System.nanoTime();
+        System.out.println((endTime - startTime) / 1000000 / 1000);
         //df.show();
     }
 }
