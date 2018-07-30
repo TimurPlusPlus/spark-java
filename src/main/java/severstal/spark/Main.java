@@ -4,8 +4,8 @@ import severstal.spark.repository.DataRepository;
 import severstal.spark.repository.ParquetDataRepository;
 import severstal.spark.service.generator.DataGenerator;
 import severstal.spark.service.generator.ParquetDataGenerator;
-import severstal.spark.service.pivot.IPivotService;
 import severstal.spark.service.pivot.PivotService;
+import severstal.spark.service.pivot.DefaultPivotService;
 
 public class Main {
 
@@ -16,7 +16,7 @@ public class Main {
         //Uncomment to generate data
         //generator.generateData();
 
-        IPivotService pivotService = new PivotService(repository);
+        PivotService pivotService = new DefaultPivotService(repository);
         pivotService.pivot();
     }
 
