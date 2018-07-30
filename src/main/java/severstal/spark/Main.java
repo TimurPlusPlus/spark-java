@@ -13,7 +13,8 @@ public class Main {
         DataRepository repository = new ParquetDataRepository();
         DataGenerator generator = new ParquetDataGenerator(repository);
 
-        generator.generateData();
+        //Uncomment to generate data
+        //generator.generateData();
 
         IPivotService pivotService = new PivotService(repository);
         pivotService.pivot();

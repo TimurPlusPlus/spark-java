@@ -1,5 +1,6 @@
 package severstal.spark.repository;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -8,6 +9,8 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SaveMode;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ParquetDataRepository implements DataRepository {
@@ -26,7 +29,7 @@ public class ParquetDataRepository implements DataRepository {
     public void write(List<Data> data) {
         JavaRDD rdd = sc.parallelize(data);
         Dataset<Row> df = sqlContext.createDataFrame(rdd, Data.class);
-        df.write().partitionBy("id").mode(SaveMode.Overwrite).parquet(PARQUET_PATH);
+        df.write().partitionBy("id").mode(SaveMode.Append).parquet(PARQUET_PATH);
     }
 
     @Override
@@ -35,5 +38,9 @@ public class ParquetDataRepository implements DataRepository {
         return df;
     }
 
+    @Override
+    public void deleteDataDir() throws IOException {
+        FileUtils.deleteDirectory(new File(PARQUET_PATH));
+    }
 
 }
